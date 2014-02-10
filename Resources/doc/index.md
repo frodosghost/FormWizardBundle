@@ -33,4 +33,4 @@ Installation
 Setup
 -----
 
-Setup instructions are located in the [setup.md](https://github.com/frodosghost/AtomLoggerBundle/blob/master/Resources/doc/setup.md) file.
+Setup instructions are located in the [setup.md](https://github.com/frodosghost/FormWizardBundle/blob/master/Resources/doc/setup.md) file.
