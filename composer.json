@@ -1,0 +1,22 @@
+{
+    "name": "manhattan/form-wizard-bundle",
+    "type": "symfony-bundle",
+    "description": "Multiple step form wizard system.",
+    "keywords": ["form", "multiple-steps"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "James Rickard",
+            "email": "james@frodosghost.com",
+            "homepage": "http://frodosghost.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": { "Manhattan\\FormWizardBundle": "" }
+    },
+    "target-dir": "Manhattan/FormWizardBundle",
+    "require": {
+        "php": ">=5.3.2",
+        "symfony/form": ">=2.3"
+    }
+}
