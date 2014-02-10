@@ -1,0 +1,19 @@
+{% block navigation %}
+{% spaceless %}
+<header class="pure-g wizard">
+    {% for step in wizard.all %}
+    <div class="pure-u-1-4">
+        {% if step.completed %}
+        <a class="step completed" href="{{ path(step.route) }}">
+            <span class="title">{{ step.title }}</span>
+        </a>
+        {% else %}
+        <span class="step">
+            <span class="title">{{ step.title }}</span>
+        </span>
+        {% endif %}
+    </div>
+    {% endfor %}
+</header>
+{% endspaceless %}
+{% endblock %}
