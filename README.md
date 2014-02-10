@@ -14,7 +14,7 @@ The documentation for the bundle is stored in the `Resources/doc/index.md` file 
 Installation
 ------------
 
-All the installation instructions are located in the [documentation](https://github.com/frodosghost/AtomLoggerBundle/blob/master/Resources/doc/index.md).
+All the installation instructions are located in the [documentation](https://github.com/frodosghost/FormWizardBundle/blob/master/Resources/doc/index.md).
 
 License
 -------
