@@ -11,7 +11,7 @@
 
 namespace Manhattan\FormWizardBundle\Tests\Wizard;
 
-use CargoNetwork\AdminBundle\Wizard\AbstractWizard;
+use Manhattan\FormWizardBundle\Wizard\AbstractWizard;
 
 /**
  * AbstractWizardTest
@@ -50,7 +50,7 @@ class AbstractWizardTest extends \PHPUnit_Framework_TestCase
 
     public function testConstructor()
     {
-        $advertismentWizard = $this->getMockForAbstractClass('CargoNetwork\AdminBundle\Wizard\AbstractWizard', array(
+        $advertismentWizard = $this->getMockForAbstractClass('Manhattan\FormWizardBundle\Wizard\AbstractWizard', array(
             $this->mockSession, $this->mockEntityManager
         ));
 
@@ -62,11 +62,11 @@ class AbstractWizardTest extends \PHPUnit_Framework_TestCase
      */
     public function testCurrentException()
     {
-        $advertismentWizard = $this->getMockForAbstractClass('CargoNetwork\AdminBundle\Wizard\AbstractWizard', array(
+        $advertismentWizard = $this->getMockForAbstractClass('Manhattan\FormWizardBundle\Wizard\AbstractWizard', array(
             $this->mockSession, $this->mockEntityManager
         ));
 
-        $this->setExpectedException('CargoNetwork\AdminBundle\Wizard\Exception\WizardException');
+        $this->setExpectedException('Manhattan\FormWizardBundle\Exception\WizardException');
         $advertismentWizard->current();
     }
 
@@ -75,11 +75,11 @@ class AbstractWizardTest extends \PHPUnit_Framework_TestCase
      */
     public function testNextException()
     {
-        $advertismentWizard = $this->getMockForAbstractClass('CargoNetwork\AdminBundle\Wizard\AbstractWizard', array(
+        $advertismentWizard = $this->getMockForAbstractClass('Manhattan\FormWizardBundle\Wizard\AbstractWizard', array(
             $this->mockSession, $this->mockEntityManager
         ));
 
-        $this->setExpectedException('CargoNetwork\AdminBundle\Wizard\Exception\WizardException');
+        $this->setExpectedException('Manhattan\FormWizardBundle\Exception\WizardException');
         $advertismentWizard->next();
     }
 
@@ -88,16 +88,16 @@ class AbstractWizardTest extends \PHPUnit_Framework_TestCase
      */
     public function testNextUnfinished()
     {
-        $uncompleted = $this->getMockForAbstractClass('CargoNetwork\AdminBundle\Wizard\AbstractStep', array('foo', 'bar', 'foobar'));
+        $uncompleted = $this->getMockForAbstractClass('Manhattan\FormWizardBundle\Wizard\AbstractStep', array('foo', 'bar', 'foobar'));
         $uncompleted->expects($this->once())->method('completed')->will($this->returnValue(false));
 
-        $completed = $this->getMockForAbstractClass('CargoNetwork\AdminBundle\Wizard\AbstractStep', array('completed', 'foo', 'barbarfoo'));
+        $completed = $this->getMockForAbstractClass('Manhattan\FormWizardBundle\Wizard\AbstractStep', array('completed', 'foo', 'barbarfoo'));
         $completed->expects($this->any())->method('completed')->will($this->returnValue(true));
 
-        $completedTwo = $this->getMockForAbstractClass('CargoNetwork\AdminBundle\Wizard\AbstractStep', array('completed', 'completed', 'barbarfoo'));
+        $completedTwo = $this->getMockForAbstractClass('Manhattan\FormWizardBundle\Wizard\AbstractStep', array('completed', 'completed', 'barbarfoo'));
         $completedTwo->expects($this->any())->method('completed')->will($this->returnValue(true));
 
-        $advertismentWizard = $this->getMockForAbstractClass('CargoNetwork\AdminBundle\Wizard\AbstractWizard', array(
+        $advertismentWizard = $this->getMockForAbstractClass('Manhattan\FormWizardBundle\Wizard\AbstractWizard', array(
             $this->mockSession, $this->mockEntityManager, array($completed, $uncompleted, $completedTwo)
         ));
 
@@ -113,13 +113,13 @@ class AbstractWizardTest extends \PHPUnit_Framework_TestCase
      */
     public function testNextUnfinishedAllCompleted()
     {
-        $completed = $this->getMockForAbstractClass('CargoNetwork\AdminBundle\Wizard\AbstractStep', array('completed', 'foo', 'barbarfoo'));
+        $completed = $this->getMockForAbstractClass('Manhattan\FormWizardBundle\Wizard\AbstractStep', array('completed', 'foo', 'barbarfoo'));
         $completed->expects($this->any())->method('completed')->will($this->returnValue(true));
 
-        $completedTwo = $this->getMockForAbstractClass('CargoNetwork\AdminBundle\Wizard\AbstractStep', array('completed', 'completed', 'barbarfoo'));
+        $completedTwo = $this->getMockForAbstractClass('Manhattan\FormWizardBundle\Wizard\AbstractStep', array('completed', 'completed', 'barbarfoo'));
         $completedTwo->expects($this->any())->method('completed')->will($this->returnValue(true));
 
-        $advertismentWizard = $this->getMockForAbstractClass('CargoNetwork\AdminBundle\Wizard\AbstractWizard', array(
+        $advertismentWizard = $this->getMockForAbstractClass('Manhattan\FormWizardBundle\Wizard\AbstractWizard', array(
             $this->mockSession, $this->mockEntityManager, array($completed, $completedTwo)
         ));
 
@@ -131,6 +131,19 @@ class AbstractWizardTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($completedTwo, $nextUnfinished, '->nextUnfinished() returns the last step, even though it is completed.');
 
         $this->assertEquals('completed', $nextUnfinished->getRoute(), '->nextUnfinished() returns the last step, even though it is completed.');
+    }
+
+    /**
+     * Test Expected Exception
+     */
+    public function testPreviousException()
+    {
+        $advertismentWizard = $this->getMockForAbstractClass('Manhattan\FormWizardBundle\Wizard\AbstractWizard', array(
+            $this->mockSession, $this->mockEntityManager
+        ));
+
+        $this->setExpectedException('Manhattan\FormWizardBundle\Exception\WizardException');
+        $advertismentWizard->previous();
     }
 
 }

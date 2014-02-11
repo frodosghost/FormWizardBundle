@@ -152,6 +152,28 @@ abstract class AbstractWizard implements \IteratorAggregate
     }
 
     /**
+     * Return previous step
+     *
+     * @return AbstractStep
+     */
+    public function previous()
+    {
+        if (is_null($this->current)) {
+            throw new WizardException('The current step has not been set. Ensure that "->select()" has been called prior to using "->next()".');
+        }
+
+        $next = null;
+        $keys = array_keys($this->steps);
+        $position = array_search($this->current, $keys);
+
+        if (isset($keys[$position - 1])) {
+            $next = $this->steps[$keys[$position - 1]];
+        }
+
+        return $next;
+    }
+
+    /**
      * Returns all steps
      *
      * @return array
